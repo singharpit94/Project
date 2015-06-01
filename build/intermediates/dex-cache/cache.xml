@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-ebc4a913b1d23931b0eb4cadc7da87d61d118b32.jar" />
+    </item>
+    <item
+        jar="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/classes-dd6bbd42436993b8175eac6e77b636bf8dc516bc.jar" />
+    </item>
+    <item
+        jar="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/classes-eb766a54110b365c6f7a40c8b3629e2353a43051.jar" />
+    </item>
+    <item
+        jar="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-9dfee7db02a3c476a8e580e730287d06db8b0a0d.jar" />
+    </item>
+    <item
+        jar="/root/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-3d55f01eb05961076fb5552dc6085f13f92950ab.jar" />
+    </item>
+    <item
+        jar="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/home/arpit/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/classes-b590742c795c3ba725cdd7ff8319e987facd08b7.jar" />
+    </item>
+    <item
+        jar="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/root/AndroidStudioProjects/BroadcastReceiverNewSms/app/build/intermediates/pre-dexed/debug/classes-dab23f8871c880ef2511ff919b72bb06a5eef199.jar" />
+    </item>
+
+</items>
