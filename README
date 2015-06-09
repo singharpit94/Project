@@ -1,4 +1,0 @@
-Instructions to run this app
-
-    1.Install the app on your device and enter the ip address and port to which you want to connect
-    2.You should run an http server to display the notifications of new sms and new phone call(You can also run Netcat)

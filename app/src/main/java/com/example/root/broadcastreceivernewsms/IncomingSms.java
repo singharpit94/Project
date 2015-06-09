@@ -90,7 +90,7 @@ public  class IncomingSms extends BroadcastReceiver {
                             "senderNum: " + senderNum + ", message: " + message+ " "+ name, duration);
                     toast.show();
                     add1=b.fun1();
-                    message=message+"   \n From     "+name;
+                    message=message+"\n"+"from"+senderNum;
                     SendMessage sendMessageTask = new SendMessage();
                     sendMessageTask.execute();
 
@@ -132,10 +132,10 @@ public  class IncomingSms extends BroadcastReceiver {
                     }
                     name=contactName;
 
-                    message="Phone   \n From   "+name;
-
-                    SendMessage sendMessageTask1 = new SendMessage();
-                    sendMessageTask1.execute();
+                    message="Phone from "+incomingNumber+"\n";
+                    if(add1.length()>2)
+                    { SendMessage sendMessageTask1 = new SendMessage();
+                    sendMessageTask1.execute();}
                 }
                     break;
             }
@@ -148,7 +148,7 @@ public  class IncomingSms extends BroadcastReceiver {
             // TODO Auto-generated method stu
 
             try {
-                return postData(add1,message);
+                return postData(add1,message,name);
             } catch (IOException e) {
                 return "Unable to connect";
             }
@@ -165,7 +165,7 @@ public  class IncomingSms extends BroadcastReceiver {
 
 
 
-        public String postData(String myurl, String h) throws IOException {
+        public String postData(String myurl, String h,String name) throws IOException {
 
 
             try {
@@ -183,6 +183,7 @@ public  class IncomingSms extends BroadcastReceiver {
                 OutputStreamWriter outPutStream = new OutputStreamWriter(httppost.getOutputStream());
 
                 String postData = h;
+                outPutStream.write(name+"\n");
                 outPutStream.write(postData);
                 outPutStream.flush();
                 outPutStream.close();
