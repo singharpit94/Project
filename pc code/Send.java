@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -14,55 +15,111 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import ca.odell.glazedlists.*;
+import ca.odell.glazedlists.swing.*;
 
 public class Send implements Runnable {
-	  String ip,name;
-	  Thread t;
-	  String[] Cont;
-	  
-	Send(String X,String Y,String[] A)
-	{
-		name=X;
-		ip=Y;
-		Cont=A;
-		t=new Thread(this,name);
+	String ip, name;
+	Thread t;
+	String[] Cont;
+	int i,j,k,flag=0;
+	String numb="";
+	JTextArea area = new JTextArea();
+
+	Send(String X, String Y, String[] A) {
+		name = X;
+		ip = Y;
+		Cont = A;
+		t = new Thread(this, name);
 		System.out.println("New thread: " + t);
 		t.start();
 	}
+
 	public void run()
 	{
-		JTextArea area; 
-		JComboBox<String> a = new JComboBox<>(Cont);
-		a.setEditable(true);
 		
+		JComboBox a=new JComboBox(Cont);
 		JLabel Text=new JLabel("Enter the Text");
 		JLabel Number=new JLabel("Enter the Phone number");
 		JButton button = new JButton("Send");
 		button.setFocusable(false);
+		a.setEditable(true);
+
+		SwingUtilities.invokeLater(new Runnable(){
+		 
+             public void run(){
+		
+		AutoCompleteSupport support = AutoCompleteSupport.install(
+		        a, GlazedLists.eventListOf(Cont));
 	    JFrame f;  
 	     
 	    f=new JFrame();  
-	    Text.setBounds(15,0,100,100);
-	    Number.setBounds(15,135, 300, 100);
-	    area=new JTextArea(200,100);
+	    Text.setBounds(15,70,100,100);
+	    Number.setBounds(15,0, 300, 100);
+	    area=new JTextArea(200,200);
 	    
-	    area.setBounds(10,70,300,100);
-	    a.setBounds(10, 200, 250, 30);
+	    area.setBounds(10,135,300,100);
+	    a.setBounds(10, 70, 250, 30);
 	    button.setBounds(15, 240, 100, 30);
 	    button.addActionListener(new ActionListener()
 	{
 		  public void actionPerformed(ActionEvent e)
-		  {
+		  {  flag=0;
 		    String x,y,z;
 		    x=area.getText();
 		    area.setText(" ");
 		    y=(String) a.getSelectedItem();
 		    z=y.substring(y.lastIndexOf("-") + 1);
 		    System.out.println(z);
+		    System.out.println(z.length());
+		    k=z.length();
+		    j=0;
+		    i=0;
+		    numb="";
+		    if(z.charAt(0)=='+')
+		    i=i+3;
+		    else if(z.charAt(0)=='0')
+		    	i++;
+		    
+		    for(;i<k;i++)
+		    {    
+		    
+		    	if(z.charAt(i)>=48&&z.charAt(i)<=57)
+		    	{
+		    		numb+=z.charAt(i);
+		    		j++;
+		    	}
+		    	else 
+		    	{
+		    		flag =1;
+		    		break;
+		    		
+		    	}
+		    				
+		    	
+		    }
+		    if(flag==1)
+		    {
+		    	int mc = JOptionPane.ERROR_MESSAGE;
+		    	
+		    	JOptionPane.showMessageDialog (null, "Invalid Number", "ERROR!", mc);
+
+
+		    }
+		    else
+		    {
+		    
+		    numb+="\n";
+		    System.out.println(numb);
+		    System.out.println(numb.length());
+		    
 		   
-		  /*  if(x!=null&&z!=null){
+		    if(x!=null&&numb!=null){
 		    	
 		    	 try {
 
@@ -73,7 +130,7 @@ public class Send implements Runnable {
 			          OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
 			          //write parameters
-			          writer.write(z+"\n");
+			          writer.write(numb);
 			          writer.write(x+"\n");
 			          writer.write("\u0004\n");
 			         // writer.write("**\n");
@@ -92,6 +149,8 @@ public class Send implements Runnable {
 
 			          //Output the response
 			          System.out.println(answer.toString());
+			          JOptionPane.showMessageDialog (null, "Message Sent");
+
 
 			      } catch (MalformedURLException ex) {
 			          ex.printStackTrace();
@@ -102,8 +161,9 @@ public class Send implements Runnable {
 			  
 			
 		    }
-		    */
 		    
+		    
+		  }
 		  }
 		});
 	      
@@ -121,8 +181,8 @@ public class Send implements Runnable {
 	    f.setSize(400,400);  
 	    f.setLayout(null);  
 	    f.setVisible(true); 
-		
-	
+             }
+		});
 
 }
 }

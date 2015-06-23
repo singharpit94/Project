@@ -105,6 +105,7 @@ public class HttpSimpleServer {
      String j="Th";
      String[] where=new String[100];
      int i=2;
+     List<String> contacts = new ArrayList<String>();
      
     // System.out.println(response);
      
@@ -124,11 +125,12 @@ public class HttpSimpleServer {
   	    System.out.println("Got list\n");
   	  List<String> keys = new ArrayList<String>(yourMap.keySet());
   	
+  	
   	int k=0;
   	
   	for (String key: keys) {
   	    System.out.println(key + ": " + yourMap.get(key));
-  	    where[k]=key+"-"+yourMap.get(key);
+  	    where[k]=(key+"-"+yourMap.get(key));
   	    k++;
   	}
        
