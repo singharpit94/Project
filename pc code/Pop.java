@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -41,7 +42,10 @@ public class Pop implements Runnable {
 				String header = "This is header of notification message";
 				JFrame frame = new JFrame();
 				JButton cloesButton = new JButton("View");
-				cloesButton.setBounds(150, 200, 75, 25);
+				JButton close=new JButton();
+				close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cro.gif"))); 
+				cloesButton.setBounds(110, 200, 75, 25);
+				close.setBounds(270, 10, 20, 20);
 				cloesButton.setMargin(new Insets(5, 4, 1, 4));
 				cloesButton.setFocusable(false);
 				cloesButton.addActionListener(new ActionListener()
@@ -50,15 +54,25 @@ public class Pop implements Runnable {
 				  {
 				    JFrame frame2=new JFrame();
 				    frame2.setSize(500,300);
+				    
 				    JLabel messageLabel = new JLabel(message);
 				    frame2.add(messageLabel);
+				    frame.dispose();
 				    frame2.setVisible(true);
+				    
 				  }
 				});
-
+				 close.addActionListener(new ActionListener() {
+			            @Override
+			            public void actionPerformed(ActionEvent e) {
+			            	
+			            	frame.dispose();
+			            }
+			        });
 				frame.add(cloesButton);
+				frame.add(close);
 				
-				frame.setSize(400,300);
+				frame.setSize(300,250);
 				frame.setUndecorated(true);
 				
 				JLabel headingLabel = new JLabel(header);

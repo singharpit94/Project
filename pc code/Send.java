@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Frame;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,6 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -47,7 +51,11 @@ public class Send implements Runnable {
 		JLabel Text=new JLabel("Enter the Text");
 		JLabel Number=new JLabel("Enter the Phone number");
 		JButton button = new JButton("Send");
+		Icon warnIcon = new ImageIcon("cro.gif");
+		JButton close=new JButton();
+		close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cro.gif"))); 
 		button.setFocusable(false);
+		close.setFocusable(false);
 		a.setEditable(true);
 
 		SwingUtilities.invokeLater(new Runnable(){
@@ -58,7 +66,8 @@ public class Send implements Runnable {
 		        a, GlazedLists.eventListOf(Cont));
 	    JFrame f;  
 	     
-	    f=new JFrame();  
+	    f=new JFrame(); 
+	    f.setUndecorated(true);
 	    Text.setBounds(15,70,100,100);
 	    Number.setBounds(15,0, 300, 100);
 	    area=new JTextArea(200,200);
@@ -166,6 +175,15 @@ public class Send implements Runnable {
 		  }
 		  }
 		});
+	    close.setBounds(350, 10, 20, 20);
+	    Icon warnIcon = new ImageIcon("cro.gif");
+	    close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            	f.setState(Frame.ICONIFIED);
+            }
+        });
 	      
 	    area.setBackground(Color.white);  
 	    area.setForeground(Color.black); 
@@ -177,6 +195,7 @@ public class Send implements Runnable {
 	   f.add(a);
 	    f.add(Number);
 	    f.add(button);
+	    f.add(close);
 	      
 	    f.setSize(400,400);  
 	    f.setLayout(null);  
@@ -185,4 +204,6 @@ public class Send implements Runnable {
 		});
 
 }
+
+	
 }
