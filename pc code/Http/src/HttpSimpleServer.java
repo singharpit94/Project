@@ -36,61 +36,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import sun.net.www.URLConnection;
- class SimpleHttpPut  { 
-	String name; // name of thread
-	
-	
-	SimpleHttpPut(String threadname) {
-		name = threadname;
-		//t = new Thread(this, name);
-		//System.out.println("New thread: " + t);
-		//t.start(); // Start the thread
-		}
-	  public void fun(){
-		  
-		  try {
-
-	          // Send the request
-	          URL url = new URL("http://10.141.129.178:8888");
-	          java.net.URLConnection conn = url.openConnection();
-	          conn.setDoOutput(true);
-	          OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-
-	          //write parameters
-	          writer.write("Arpit\n");
-
-	          writer.flush();
-	          writer.close();
-	          // Get the response
-	          StringBuffer answer = new StringBuffer();
-	          BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	          String line;
-	          while ((line = reader.readLine()) != null) {
-	              answer.append(line);
-	          }
-	         
-	          reader.close();
-
-	          //Output the response
-	          System.out.println(answer.toString());
-
-	      } catch (MalformedURLException ex) {
-	          ex.printStackTrace();
-	      } catch (IOException ex) {
-	          ex.printStackTrace();
-	      }
-
-	  }
-	
-  }
-
+ 
+//Http server class
 public class HttpSimpleServer {
-   
+	 public static  String murl;
    public static void main(String[] args) throws Exception {
     HttpServer server = HttpServer.create(new InetSocketAddress(4444), 0);
     server.createContext("/test", new MyHandler());
     server.setExecutor(null); // creates a default executor
-    Pop noti=new Pop("New","Unknown","Contents");
+    Pop noti=new Pop("New","Arpit","123456789123456789123456789123456789123456789123456789");
     SoundUtils.tone(1000,100);
     
      
@@ -99,14 +53,20 @@ public class HttpSimpleServer {
     
     
   }
+   String getm()
+   {
+	   return murl;
+   }
 
   static class MyHandler implements HttpHandler {
-    public void handle(HttpExchange t) throws IOException {
+   
+	  public void handle(HttpExchange t) throws IOException {
       String response = "hhhhhhhhhhh";
-     String response1 = "hhhhhhhhhhhh";
+     String response1 = "hhhhhhhhhh";
+  
      String first;
      String j="Th";
-     String[] where=new String[100];
+     String[] where=new String[150];
      int i=2;
      List<String> contacts = new ArrayList<String>();
      
@@ -121,7 +81,7 @@ public class HttpSimpleServer {
       String line;
       String x=null;
       try {
-  	    
+  	     //Getting the contact list
   	    final InputStream yourInputStream = t.getRequestBody(); // InputStream from where to receive the map, in case of network you get it from the Socket instance.
   	    final ObjectInputStream mapInputStream = new ObjectInputStream(yourInputStream);
   	    final Map<String, String> yourMap = (Map) mapInputStream.readObject();
@@ -145,20 +105,26 @@ public class HttpSimpleServer {
       
      while((line = reader.readLine()) != null) {
           result.append(line);
+         
       }
       j=result.toString();
+     
+    
+      
       System.out.println(first);
-      System.out.println(result.toString());
+      System.out.println(j);
+      //checking for valid url
       UrlValidator defaultValidator = new UrlValidator(); // default schemes
 	  if (defaultValidator.isValid(first)) {
 	      System.out.println("valid");
-	      
-	      
+	        murl=first;
+	        //opening send dialog box
 	      Send h=new Send("thrid",first,where);
+	      
 	  }
      
 	  else
-	  {
+	  {   //opening popup
 		  Pop noti=new Pop("New",first,j);
 	  }
      
@@ -180,7 +146,7 @@ public class HttpSimpleServer {
         
       
     }
-    
+      
     }
   
   }

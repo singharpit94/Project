@@ -103,7 +103,9 @@ public class Send implements Runnable {
 		    		numb+=z.charAt(i);
 		    		j++;
 		    	}
-		    	else 
+		    	else if (z.charAt(i)==' ')
+		    		continue;
+		    	else
 		    	{
 		    		flag =1;
 		    		break;
@@ -175,8 +177,8 @@ public class Send implements Runnable {
 		  }
 		  }
 		});
-	    close.setBounds(350, 10, 20, 20);
-	    Icon warnIcon = new ImageIcon("cro.gif");
+	    close.setBounds(350, 10, 18, 18);
+	 
 	    close.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

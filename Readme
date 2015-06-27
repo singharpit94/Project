@@ -1,0 +1,12 @@
+Desktop Notification App
+
+
+This is a basic Android App which displays notification on the computer on incoming of new SMS and phone call
+
+Steps to run the app
+
+1.Import the Android Project Desktop Notifier in the Android Studio and install the App on the device.
+2.Import the Http project in the Eclipse on the computer.
+3.Once the app is installed on the device enter the ip address of the computer with port 4444
+    for example ip-http;//10.133.115.27:4444/test
+Once connected the app will show a dialog box to send SMS from the computer and will also display pop-ups at the bottom right corner when the phone receives a new SMS or phone.

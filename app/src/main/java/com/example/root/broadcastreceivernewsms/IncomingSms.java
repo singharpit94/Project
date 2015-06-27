@@ -11,10 +11,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.telephony.gsm.SmsManager;
 import android.telephony.gsm.SmsMessage;
 import android.util.Log;
-import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Toast;
 
@@ -23,19 +21,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
 //import com.example.root.broadcastreceivernewsms.BroadcastNewSms;
 public  class IncomingSms extends BroadcastReceiver {
 
 
-    public String message=" ";
-    public String name="Unkonwn";
+    public String message="";
+    public String name="";
 
-    public String add1=" ";
+    public String add1="";
     public  Context c1;
     Toast mtoast;
     int i=1;
@@ -45,7 +40,7 @@ public  class IncomingSms extends BroadcastReceiver {
 
 
 
-
+   //OnReceive method to detect new phone or sms
     public void onReceive(Context context, Intent intent) {
 
         // Retrieves a map of extended data from the intent.
@@ -66,7 +61,7 @@ public  class IncomingSms extends BroadcastReceiver {
                     String phoneNumber = currentMessage.getDisplayOriginatingAddress();
 
                     String senderNum = phoneNumber;
-                    String contactName="Unknown";
+                    String contactName="";
                     message = currentMessage.getDisplayMessageBody();
                     ContentResolver cr = context.getContentResolver();
                     Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
@@ -105,6 +100,7 @@ public  class IncomingSms extends BroadcastReceiver {
 
         }
     }
+    //Phone notification
     public class MyPhoneStateListener extends PhoneStateListener {
         public void onCallStateChanged(int state,String incomingNumber){
             switch(state){
@@ -112,8 +108,10 @@ public  class IncomingSms extends BroadcastReceiver {
 
                 case TelephonyManager.CALL_STATE_RINGING:
                 {    String contactName="Unknown";
+                   //getting address
                     add1=b.fun1();
                    c1=b.getAppContext();
+                    //getting contact name
                     ContentResolver cr = c1.getContentResolver();
                     Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(incomingNumber));
                     Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
@@ -131,7 +129,7 @@ public  class IncomingSms extends BroadcastReceiver {
                     name=contactName;
 
                     message="\u0004";
-
+//checking valid url
                   if( URLUtil.isValidUrl(add1))
                     { SendMessage sendMessageTask1 = new SendMessage();
                     sendMessageTask1.execute();}
@@ -167,7 +165,7 @@ public  class IncomingSms extends BroadcastReceiver {
 
 
 
-        public String postData(String myurl, String h,String name) throws IOException {
+        public String postData(String myurl, String h,String nam) throws IOException {
 
 
             try {
@@ -185,7 +183,8 @@ public  class IncomingSms extends BroadcastReceiver {
                 OutputStreamWriter outPutStream = new OutputStreamWriter(httppost.getOutputStream());
 
                 String postData = h;
-                outPutStream.write(name+"\n");
+                String postData1="1111"+nam;
+                outPutStream.write(postData1+"\n");
                 outPutStream.write(postData);
                 outPutStream.flush();
                 outPutStream.close();
